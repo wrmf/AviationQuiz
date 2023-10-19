@@ -34,12 +34,6 @@ def index():
 		elif request.form.get('toggle-button') == 'Light':
 			session['theme'] = 'Light'
 			theme = session.get('theme', None)
-		# Go to login page
-		elif request.form.get('log') == 'Login':
-			return redirect(url_for('login'))
-		# go to sign up page
-		elif request.form.get('sign') == 'Sign Up':
-			return redirect(url_for('sign_up'))
 		# Go straight to home
 		elif request.form.get('skip') == 'Home':
 			# Throw error if not logged in
@@ -49,76 +43,6 @@ def index():
 			else:
 				return redirect(url_for('home'))
 	return render_template('index.html', theme=theme, error=None)
-
-# home page
-@app.route("/home/", methods=[ 'GET', 'POST' ])
-def home():
-	curruser = session.get('curruser', None)
-	theme = session.get('theme', None)
-
-	# If user not logged in, sent back to index
-	if not curruser:
-		return redirect(url_for('index'))
-	# If theme doesn't exist, set to dark
-	if not theme:
-		theme = 'Dark'
-
-	if request.method == 'POST':
-		# Get the theme
-		if request.form.get('toggle-button') == 'Dark':
-			session['theme'] = 'Dark'
-			theme = session.get('theme', None)
-		elif request.form.get('toggle-button') == 'Light':
-			session['theme'] = 'Light'
-			theme = session.get('theme', None)
-		if request.form.get('ind') == 'Logout':  # Logout button (send to index)
-			return redirect(url_for('index')) #redirect to main page
-		if request.form.get('play') == 'play':  # Check if 'play' was hit
-			return redirect(url_for('play')) #redirect to play page
-		if request.form.get('change-pass') == 'Change Password':  	# Redirect to change password page
-			return redirect(url_for('change_password'))
-
-	return render_template('home.html', theme=theme, currentuser = curruser)
-
-# home page
-@app.route("/play/", methods=[ 'GET', 'POST' ])
-def play():
-	global numQuestions #get number of questions
-	curruser = session.get('curruser', None)
-	theme = session.get('theme', None)
-
-	if not curruser:
-		return redirect(url_for('index'))
-	# If theme doesn't exist, set to dark
-	if not theme:
-		theme = 'Dark'
-
-	if request.method == 'POST':
-		if request.form.get('go'):
-			if request.form.get('go') == 'Exit':  # This is a login button to take users to the login page
-				return redirect(url_for('home')) #Redirect to /home
-			else:
-				numQ = request.form['numQ']	# Get username
-
-
-				if numQ.isdigit():  # checks if numQ is comprised of digits.
-					numQ = int(numQ)  # if it is digits it is converted to an int
-				else:
-					errorStatement = "Please enter valid number..."  # if it isnt error statment is ran to try again
-					return render_template("play.html", theme=theme, errorStatement=errorStatement, min=2, max=MAXQUESTIONS)
-
-				session['listOfQuestions'] = []
-				session['numQuestions'] = numQuestions #Save to session
-				session['currentQuestion'] = 1 #reset current question counter
-				session['score'] = 0 #Reset score
-				if request.form.get('go') == 'GO (easy difficulty)':  # This is a login button to take users to the login page
-					return redirect(url_for('play_game', gametype='easy')) #Redirect to /easyGame
-				elif request.form.get('go') == 'GO (medium difficulty)':  # This is a login button to take users to the login page
-					return redirect(url_for('play_game', gametype='medium')) #Redirect to /easyGame
-				elif request.form.get('go') == 'GO (hard difficulty)':  # This is a login button to take users to the login page
-					return redirect(url_for('play_game', gametype='hard')) #Redirect to /easyGame
-
-	return render_template('play.html', theme=theme)
 
 @app.route("/codes", methods=[ 'GET', 'POST' ])#, methods=[ 'GET', 'POST' ])	# 'GET' and 'POST' are HTML methods that are used in the corresponding html file
 def codes():
