@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>Game complete</title>
+        <link rel="icon" type="image/png" href="../static/favicon.png">
+		<link rel="stylesheet" href="../static/main.css" type="text/css"/>
+		<link rel="stylesheet" href="../static/{{ theme }}-theme.css" type="text/css"/>
+	</head>
+	<body class="{{ theme }}-body">
+    	<div class="complete-div {{ theme }}-div">
+         	<h2>{{ message }}</h2>
+            <form method="post" action="/">
+				<input class="btn complete-btn {{ theme }}-btn" type="submit" value="Back to start?" name="replay"/>
+				<br>
+			</form>
+    	</div>
+			<h2>{{q0}}</h2>
+			<h2>{{q1}}</h2>
+			<h2>{{q2}}</h2>
+			<h2>{{q3}}</h2>
+			<h2>{{q4}}</h2>
+			<h2>{{q5}}</h2>
+			<h2>{{q6}}</h2>
+			<h2>{{q7}}</h2>
+			<h2>{{q8}}</h2>
+			<h2>{{q9}}</h2>
+	</body>
+</html>

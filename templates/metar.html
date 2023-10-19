@@ -1,0 +1,32 @@
+
+<html>
+	<head>
+		<title>Easy Quiz Page</title>
+        <link rel="icon" type="image/png" href="../static/favicon.png">
+        <link rel="stylesheet" href="../static/main.css" type="text/css"/>
+		<link rel="stylesheet" href="../static/{{ theme }}-theme.css" type="text/css">
+	</head>
+	<body class="{{ theme }}-body">
+         <div class="quiz-score-div">
+                <p><b>Score: </b>{{ correctQ }}/{{currQ-1}}</p>
+                <p><b>Question: </b>{{ currQ }}/{{ maxQ }}</p>
+         </div>
+         <div class="metar-div {{ theme }}-div">
+            <h2>Question: {{ question }}</h2>
+            <form action="/metar" method="POST">
+                <input class="play-text {{ theme }}-text" type="text" placeholder="Enter your answer" name="answer">
+                <button class="btn home-btn {{ theme }}-btn" name="Go!" value="Go!">Go!</button>
+            </form>
+        </div>
+            <h2>{{q0}}</h2>
+			<h2>{{q1}}</h2>
+			<h2>{{q2}}</h2>
+			<h2>{{q3}}</h2>
+			<h2>{{q4}}</h2>
+			<h2>{{q5}}</h2>
+			<h2>{{q6}}</h2>
+			<h2>{{q7}}</h2>
+			<h2>{{q8}}</h2>
+			<h2>{{q9}}</h2>
+	</body>
+</html>

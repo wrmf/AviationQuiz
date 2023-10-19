@@ -1,0 +1,204 @@
+.auth-div {
+    text-align: center;
+    margin: auto;
+    margin-top: 100px;
+    width: 300px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+.cpass-div {
+    text-align: center;
+    margin: auto;
+    margin-top: 100px;
+    width: 330px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+.auth-text {
+    border-top-style: hidden;
+    border-bottom-style: hidden;
+    border-left-style: hidden;
+    border-right-style: hidden;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.auth-btn {
+    border: hidden;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Index page */
+.index-div {
+    text-align: center;
+    margin: auto;
+    margin-top: 100px;
+    width: 420px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+/* Home Page Play Stuff */
+.home-div {
+    text-align: center;
+    margin: auto;
+    margin-top: 150px;
+    width: 300px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    font-size: 22px;
+}
+/* Code Page Play Stuff */
+.code-div {
+    text-align: center;
+    margin: auto;
+    margin-top: 150px;
+    width: 350px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    font-size: 22px;
+}
+/* METAR Page Stuff */
+.metar-div {
+    text-align: center;
+    margin: auto;
+    margin-top: 150px;
+    width: 400px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+.home-btn {
+    border: hidden;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 9px;
+    padding-right: 9px;
+    border-radius: 9px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.logged-user {
+    line-height: 1.5;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+/* Button that goes up against the body background */
+.bg-btn {
+    border: hidden;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 7px;
+    border: solid 1px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Play Page */
+.play-div {
+    text-align: center;
+    margin: auto;
+    margin-top: 100px;
+    width: 670px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.play-text {
+    padding: 5px;
+    border-top-style: hidden;
+    border-bottom-style: hidden;
+    border-left-style: hidden;
+    border-right-style: hidden;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Quiz Page */
+.quiz-div {
+    text-align: center;
+    margin: auto;
+    width: 1700px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.quiz-btn {
+    position: relative;
+    border: hidden;
+    border-radius: 12px;
+    margin-bottom: 3px;
+    padding: 20px;
+    width: 800px;
+    height: 75px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    border: solid 1px;
+}
+.quiz-score-div {
+    text-align: left;
+    margin-top: 8px;
+    margin-bottom: 70px;
+    line-height: 3px;
+}
+.quiz-user {
+    line-height: 3px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: right;
+	margin-top: 8px;
+}
+
+/* Complete Page */
+.complete-div {
+    text-align: center;
+    margin: auto;
+    margin-top: 150px;
+    width: 650px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+.complete-btn {
+    border: hidden;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 9px;
+    padding-right: 9px;
+    border-radius: 9px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}

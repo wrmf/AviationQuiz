@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>Home Page</title>
+        <link rel="icon" type="image/png" href="../static/favicon.png">
+		<link rel="stylesheet" href="../static/main.css" type="text/css"/>
+		<link rel="stylesheet" href="../static/{{ theme }}-theme.css" type="text/css"/>
+	</head>
+	<!-- This is the CSS style for the logged in info in the top right of the home page -->
+	<body class="{{ theme }}-body">
+		<!-- Toggle button for dark/light theme -->
+		<div style="width: 100px;">
+			<form style="float:left;" method="post" action="/home/">
+				<script>
+					function tgl()
+					{
+						var t = document.getElementById("toggle");
+						if (t.value == "Dark") {t.value = "Light";}
+						else if (t.value == "Light") {t.value = "Dark";}
+					}
+				</script>
+				<button class="bg-btn {{ theme }}-bg-btn" onclick="tgl();" id="toggle" name="toggle-button" value="{{ theme }}">{{ theme }}</button>
+			</form>
+		</div>
+		<!-- Display the logged in user in the top right -->
+		<div class="logged-user">
+			<span style="float: right">{{ currentuser }}</span>
+			<br>
+			<!-- Section for buttons under logged in user -->
+			<form style="float:right;" type="submit" action="/change_password">
+				<!-- Button to change password -->
+				<input class="btn bg-btn {{ theme }}-bg-btn" style="float:right" type="submit" value="Change Password" name="change-pass"/>
+			</form>
+		</div>
+		<!-- Section for center of screen with play button -->
+		<div class="home-div {{ theme }}-div">
+			<h1>Play Quiz</h1>
+			<!-- Button to navigate to 'play' page -->
+			<form method="post" action="/play">
+				<input class="btn home-btn {{ theme }}-btn" type="submit" value="Play" name="play"/>
+			</form>
+			<!-- Button to navigate to 'index' page -->
+			<form type="submit" action="/">
+				<input class="btn auth-btn {{ theme }}-btn" type="submit" style="margin-left:2px" value="Exit" name="ind"/>
+			</form>
+		</div>
+	</body>
+</html>

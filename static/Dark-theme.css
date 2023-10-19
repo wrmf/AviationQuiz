@@ -1,0 +1,45 @@
+/* Login, Sign-Up, Change Password Pages */
+.Dark-body {
+    background-color: #0d1217;
+    color: white;
+    font-family: Sans-Serif;
+}
+.Dark-div {
+    background-color: #151e29;
+    border: solid 1px #8d9199;
+}
+.Dark-text {
+    background-color: black;
+    color: #a2a7ab;
+}
+.Dark-text::placeholder {
+    color: #a2a7ab;
+    font-style: italic;
+    opacity: 0.65;
+}
+.Dark-text:focus {
+    border: solid #58afe8;
+    border-radius: 4px;
+}
+.Dark-btn {
+    background-color: black;
+    color: #a2a7ab;
+    border-color: #8d9199; /* For quiz buttons */
+}
+.Dark-btn:focus {
+    border: solid #58afe8;
+    border-radius: 7px;
+}
+.dark-btn:hover {
+    background-color: #363638;
+    color: #bababf;
+}
+.Dark-bg-btn {
+    border-color: #8d9199;
+    background-color: #151e29;
+    color: white;
+}
+.Dark-bg-btn:hover {
+    background-color: #414454;
+    border: solid 1px #60626b;
+}

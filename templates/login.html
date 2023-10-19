@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>Login Page</title>
+        <link rel="icon" type="image/png" href="../static/favicon.png">
+		<link rel="stylesheet" href="../static/main.css" type="text/css"/>
+		<link rel="stylesheet" href="../static/{{ theme }}-theme.css" type="text/css"/>
+	</head>
+	<body class="Dark-body">
+		<div class="auth-div {{ theme }}-div">
+			<h1>Login</h1>
+				<p>Enter Username and Password:</p>
+			<form action="" method="post">
+				<!-- This is the field to enter the username -->
+				<p><input class="auth-text {{ theme }}-text" type="text" placeholder="Username" name="username" value="{{
+                	request.form.username }}"></p>
+
+				<!-- This is the field to enter the password -->
+				<p><input class ="auth-text {{ theme }}-text" type="password" placeholder="Password" name="password" value="{{
+                    request.form.password }}"></p>
+
+				<!-- Submit button -->
+				<p><input class="btn auth-btn {{ theme }}-btn" type="submit" value="Login"></p>
+
+				<!-- Output error (error defined in app.py -->
+				{% if error %}
+				<p class="error"><strong>Error:</strong> {{ error }}
+				{% endif %}
+			</form>
+		</div>
+	</body>
+</html>

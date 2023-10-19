@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/html">
+	<head>
+		<title>Play game</title>
+        <link rel="icon" type="image/png" href="../static/favicon.png">
+		<link rel="stylesheet" href="../static/main.css" type="text/css"/>
+		<link rel="stylesheet" href="../static/{{ theme }}-theme.css" type="text/css"/>
+	</head>
+	<body class="{{ theme }}-body">
+        <div class="play-div {{ theme }}-div">
+         <h1>Please select the type of quiz and the number of questions</h1>
+            <form method="post" action="">
+                <input class="play-text {{ theme }}-text" type="text" placeholder="Enter # of questions" name="numQ">
+				<!-- Button to navigate to 'index' page -->
+                <p>
+                {% if errorStatement %}
+                {{ errorStatement }} between {{ min }} and {{ max }}
+                {% endif %}
+                </p>
+                <p><input class="auth-btn {{ theme }}-btn" type="submit" value="GO (easy difficulty)" name="go"></p>
+                <p><input class="auth-btn {{ theme }}-btn" type="submit" value="GO (medium difficulty)" name="go"></p>
+                <p><input class="auth-btn {{ theme }}-btn" type="submit" value="GO (hard difficulty)" name="go"></p>
+                <p><input class="auth-btn {{ theme }}-btn" type="submit" value="Exit" name="go"></p>
+            </form>
+        </div>
+	</body>
+</html>

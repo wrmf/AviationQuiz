@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<title>Winds Aloft</title>
+        <link rel="icon" type="image/png" href="../static/favicon.png">
+		<link rel="stylesheet" href="../static/main.css" type="text/css"/>
+		<link rel="stylesheet" href="../static/{{ theme }}-theme.css" type="text/css"/>
+	</head>
+	<!-- This is the CSS style for the logged in info in the top right of the home page -->
+	<body class="{{ theme }}-body">
+		<!-- Toggle button for dark/light theme -->
+		<div style="width: 100px;">
+			<form style="float:left;" method="post" action="/metar/">
+				<script>
+					function tgl()
+					{
+						var t = document.getElementById("toggle");
+						if (t.value == "Dark") {t.value = "Light";}
+						else if (t.value == "Light") {t.value = "Dark";}
+					}
+				</script>
+				<button class="bg-btn {{ theme }}-bg-btn" onclick="tgl();" id="toggle" name="toggle-button" value="{{ theme }}">{{ theme }}</button>
+			</form>
+		</div>
+		<!-- Display the logged in user in the top right -->
+		<!-- Section for center of screen with play button -->
+		<div class="home-div {{ theme }}-div">
+			<h1>This option is not live yet</h1>
+			<!-- Button to navigate to 'index' page -->
+			<form type="submit" action="/">
+				<input class="btn auth-btn {{ theme }}-btn" type="submit" style="margin-left:2px" value="Exit" name="ind"/>
+			</form>
+		</div>
+	</body>
+</html>
