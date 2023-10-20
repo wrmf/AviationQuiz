@@ -163,7 +163,7 @@
 "For the following METAR: METAR KOUN 191100Z 09010KT 7SM -RA BR BKN040 19/18 A2986, what day of the month was it issued?"*"19"
 "For the following METAR: METAR KOUN 191100Z 09010KT 7SM -RA BR BKN040 19/18 A2986, what time was it issued (in Zulu time; put only numbers)?"*"1100"
 "For the following METAR: METAR KOUN 191100Z 09010KT 7SM -RA BR BKN040 19/18 A2986, what weather is present (type None if none is present)?"*"Light rain mist"
-"For the following METAR: METAR KOUN 191100Z 09010KT 7SM -RA BR BKN040 19/18 A2986, what is the ceiling (type only numbers or None if no ceiling)?"*"400"
+"For the following METAR: METAR KOUN 191100Z 09010KT 7SM -RA BR BKN040 19/18 A2986, what is the ceiling (type only numbers or None if no ceiling)?"*"4000"
 "For the following METAR: METAR KOUN 191100Z 09010KT 7SM -RA BR BKN040 19/18 A2986, what is the temperature/dewpoint spread?"*"1"
 "For the following METAR: METAR KOUN 191100Z 09010KT 7SM -RA BR BKN040 19/18 A2986, what is the pressure?"*"29.86"
 "For the following METAR: METAR KOUN 120600Z 04005KT 5SM -DZ BR BKN010 14/14 A2998, what is the wind speed (Enter a number with a G as necessary for gusts, if there is no wind, put 0)"*"05"
