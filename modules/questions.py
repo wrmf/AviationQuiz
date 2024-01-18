@@ -32,3 +32,16 @@ def get_metar_questions(listOfQuestions, question_df, maxQuestions):
     question = question_df["QUESTION"][currentQuestion]
 
     return [correctAnswer, question]
+
+def get_taf_questions(listOfQuestions, question_df, maxQuestions):
+    currentQuestion = random.randint(0, maxQuestions - 1)
+
+    if listOfQuestions is not None:
+        while question_df["QUESTION"][
+            currentQuestion] in listOfQuestions:  # Make sure this question has not been asked already this game
+            currentQuestion = random.randint(0, maxQuestions - 1)
+
+    correctAnswer = question_df["ANSWER"][currentQuestion]
+    question = question_df["QUESTION"][currentQuestion]
+
+    return [correctAnswer, question]

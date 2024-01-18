@@ -204,7 +204,72 @@ def taf():
 	if not theme:
 		theme = 'Dark'
 
-	return render_template('taf.html', theme=theme) #Render window
+	taf_df = read_from_taf_file()
+	answerString = session.get('answerString', None)
+	theme = session.get('theme', None)
+	ret = get_taf_questions(session.get('listOfQuestions'), taf_df, len(taf_df))
+
+	if (session.get('listOfQuestions') is None):
+		session['listOfQuestions'] = [ret[0]]
+	else:
+		session['listOfQuestions'] = session.get('listOfQuestions').append(ret[0])
+
+	numCorrect = session.get('numCorrect', None)
+	currentQuestion = session.get('currentQuestion', None)
+
+	if (currentQuestion < 10):
+
+		correctAnswer = session.get('correctAnswer', None)  # Get correct answer
+
+		if request.method == 'GET':
+			session['correctAnswer'] = ret[0]  # correctAnswer # Set correct answer
+		if request.method == 'POST':
+			answer = request.form.get('answer',
+									  'No answer')  # Get answer from button press with a default value of "No answer"
+
+			if (answer is not None and correctAnswer is not None and compareTAF(answer, correctAnswer)):
+				numCorrect += 1
+				session['numCorrect'] = numCorrect  # Set
+				if currentQuestion != 0:
+					answerString = answerString + f"{answer} ✅ {correctAnswer}\n"
+					session['answerString'] = answerString
+			else:
+				if currentQuestion != 0:
+					answerString = answerString + f"{answer} ❌ {correctAnswer}\n"
+					session['answerString'] = answerString
+
+			currentQuestion += 1  # Increment current question
+			session['currentQuestion'] = currentQuestion  # Save to cookies
+			session['correctAnswer'] = ret[0]
+			session['question'] = ret[1]
+	else:
+		correctAnswer = session.get('correctAnswer', None)  # Get correct answer
+		answer = request.form.get('answer',
+								  'No answer')  # Get answer from button press with a default value of "No answer"
+
+		if (answer is not None and correctAnswer is not None and compareTAF(answer, correctAnswer)):
+			numCorrect += 1
+			session['numCorrect'] = numCorrect  # Set
+			if currentQuestion != 0:
+				answerString = answerString + f"{answer} ✅ {correctAnswer}\n"
+				session['answerString'] = answerString
+		else:
+			if currentQuestion != 0:
+				answerString = answerString + f"{answer} ❌ {correctAnswer}\n"
+				session['answerString'] = answerString
+
+		return redirect(url_for('gameComplete'))
+
+	if not theme:
+		theme = 'Dark'
+
+	answerArray = answerString.split('\n')
+	while (len(answerArray) <= 10):
+		answerArray.append('')
+	return render_template('taf.html', theme=theme, question=ret[1], correctQ=numCorrect, currQ=currentQuestion,
+						   maxQ=MAXQUESTIONS, q0=answerArray[0], q1=answerArray[1], q2=answerArray[2],
+						   q3=answerArray[3], q4=answerArray[4], q5=answerArray[5], q6=answerArray[6],
+						   q7=answerArray[7], q8=answerArray[8], q9=answerArray[9])
 
 @app.route("/winds", methods=[ 'GET', 'POST' ])
 def winds():
@@ -241,6 +306,17 @@ def isDoubleable(s1, s2):
 		return True
 
 def compareMETAR(s1, s2):
+	theme = session.get('theme', None)
+	if not theme:
+		theme = 'Dark'
+
+	if isDoubleable(s1, s2):
+		return float(s1) == float(s2)
+	else:
+		remove = string.punctuation + string.whitespace
+		return s1.translate(str.maketrans('', '', remove)).lower() == s2.translate(str.maketrans('', '', remove)).lower()
+
+def compareTAF(s1, s2):
 	theme = session.get('theme', None)
 	if not theme:
 		theme = 'Dark'
