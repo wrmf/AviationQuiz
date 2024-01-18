@@ -417,5 +417,5 @@ if __name__ == "__main__":
 	if(len(sys.argv) >= 2):
 		port = sys.argv[1]
 	app.config['SECRET_KEY'] = 'NA.bcr*xB2KJc7W!7mVHeG!xUC9uQo8qAJj7fE7wr2FbHM8A7kdRRaaN7a-zK9*.vxB92o3s.wgLRV76Z6qWvj9gb@Er*2cThNpe'
-	app.run()
+	app.run(port = port)
 	#app.run('0.0.0.0', port) # 5000 is the port for the url, change this when test so that multiple devs can run at same time on different ports
