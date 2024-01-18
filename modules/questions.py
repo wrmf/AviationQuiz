@@ -45,3 +45,16 @@ def get_taf_questions(listOfQuestions, question_df, maxQuestions):
     question = question_df["QUESTION"][currentQuestion]
 
     return [correctAnswer, question]
+
+def get_type_questions(listOfQuestions, question_df, maxQuestions):
+    currentQuestion = random.randint(0, maxQuestions - 1)
+
+    if listOfQuestions is not None:
+        while question_df["ICAO_Code"][
+            currentQuestion] in listOfQuestions:  # Make sure this question has not been asked already this game
+            currentQuestion = random.randint(0, maxQuestions - 1)
+
+    correctAnswer = question_df["ICAO_Code"][currentQuestion]
+    question = f'What is the IACO type identifier for an {question_df["Model_FAA"][currentQuestion]}'
+
+    return [correctAnswer, question]

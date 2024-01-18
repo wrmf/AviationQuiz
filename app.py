@@ -54,7 +54,9 @@ def codes():
 	if(session.get('listOfQuestions') is None):
 		session['listOfQuestions'] = [ret[0]]
 	else:
-		session['listOfQuestions'] = session.get('listOfQuestions').append(ret[0])
+		Q = session.get('listOfQuestions')
+		Q.append(ret[0])
+		session['listOfQuestions'] = Q
 
 	numCorrect = session.get('numCorrect', None)
 	currentQuestion = session.get('currentQuestion', None)
@@ -138,7 +140,10 @@ def metar():
 	if(session.get('listOfQuestions') is None):
 		session['listOfQuestions'] = [ret[0]]
 	else:
-		session['listOfQuestions'] = session.get('listOfQuestions').append(ret[0])
+
+		Q = session.get('listOfQuestions')
+		Q.append(ret[0])
+		session['listOfQuestions'] = Q
 
 	numCorrect = session.get('numCorrect', None)
 	currentQuestion = session.get('currentQuestion', None)
@@ -212,7 +217,9 @@ def taf():
 	if (session.get('listOfQuestions') is None):
 		session['listOfQuestions'] = [ret[0]]
 	else:
-		session['listOfQuestions'] = session.get('listOfQuestions').append(ret[0])
+		Q = session.get('listOfQuestions')
+		Q.append(ret[0])
+		session['listOfQuestions'] = Q
 
 	numCorrect = session.get('numCorrect', None)
 	currentQuestion = session.get('currentQuestion', None)
@@ -267,6 +274,83 @@ def taf():
 	while (len(answerArray) <= 10):
 		answerArray.append('')
 	return render_template('taf.html', theme=theme, question=ret[1], correctQ=numCorrect, currQ=currentQuestion,
+						   maxQ=MAXQUESTIONS, q0=answerArray[0], q1=answerArray[1], q2=answerArray[2],
+						   q3=answerArray[3], q4=answerArray[4], q5=answerArray[5], q6=answerArray[6],
+						   q7=answerArray[7], q8=answerArray[8], q9=answerArray[9])
+
+@app.route("/types", methods=[ 'GET', 'POST' ])
+def types():
+	theme = session.get('theme', None)
+
+	if not theme:
+		theme = 'Dark'
+
+	types_df = read_from_type_file()
+	answerString = session.get('answerString', None)
+	theme = session.get('theme', None)
+	ret = get_type_questions(session.get('listOfQuestions'), types_df, len(types_df))
+
+
+	if (session.get('listOfQuestions') is None):
+		session['listOfQuestions'] = [ret[0]]
+	else:
+		Q = session.get('listOfQuestions')
+		Q.append(ret[0])
+		session['listOfQuestions'] = Q
+
+	numCorrect = session.get('numCorrect', None)
+	currentQuestion = session.get('currentQuestion', None)
+
+	if (currentQuestion < 10):
+
+		correctAnswer = session.get('correctAnswer', None)  # Get correct answer
+
+		if request.method == 'GET':
+			session['correctAnswer'] = ret[0]  # correctAnswer # Set correct answer
+		if request.method == 'POST':
+			answer = request.form.get('answer',
+									  'No answer')  # Get answer from button press with a default value of "No answer"
+
+			if (answer is not None and correctAnswer is not None and compareString(answer, correctAnswer)):
+				numCorrect += 1
+				session['numCorrect'] = numCorrect  # Set
+				if currentQuestion != 0:
+					answerString = answerString + f"{answer} ✅ {correctAnswer}\n"
+					session['answerString'] = answerString
+			else:
+				if currentQuestion != 0:
+					answerString = answerString + f"{answer} ❌ {correctAnswer}\n"
+					session['answerString'] = answerString
+
+			currentQuestion += 1  # Increment current question
+			session['currentQuestion'] = currentQuestion  # Save to cookies
+			session['correctAnswer'] = ret[0]
+			session['question'] = ret[1]
+	else:
+		correctAnswer = session.get('correctAnswer', None)  # Get correct answer
+		answer = request.form.get('answer',
+								  'No answer')  # Get answer from button press with a default value of "No answer"
+
+		if (answer is not None and correctAnswer is not None and compareString(answer, correctAnswer)):
+			numCorrect += 1
+			session['numCorrect'] = numCorrect  # Set
+			if currentQuestion != 0:
+				answerString = answerString + f"{answer} ✅ {correctAnswer}\n"
+				session['answerString'] = answerString
+		else:
+			if currentQuestion != 0:
+				answerString = answerString + f"{answer} ❌ {correctAnswer}\n"
+				session['answerString'] = answerString
+
+		return redirect(url_for('gameComplete'))
+
+	if not theme:
+		theme = 'Dark'
+
+	answerArray = answerString.split('\n')
+	while (len(answerArray) <= 10):
+		answerArray.append('')
+	return render_template('types.html', theme=theme, question=ret[1], correctQ=numCorrect, currQ=currentQuestion,
 						   maxQ=MAXQUESTIONS, q0=answerArray[0], q1=answerArray[1], q2=answerArray[2],
 						   q3=answerArray[3], q4=answerArray[4], q5=answerArray[5], q6=answerArray[6],
 						   q7=answerArray[7], q8=answerArray[8], q9=answerArray[9])
@@ -332,6 +416,6 @@ if __name__ == "__main__":
 	port = 5000
 	if(len(sys.argv) >= 2):
 		port = sys.argv[1]
-	#app.secret_key = 'NA.bcr*xB2KJc7W!7mVHeG!xUC9uQo8qAJj7fE7wr2FbHM8A7kdRRaaN7a-zK9*.vxB92o3s.wgLRV76Z6qWvj9gb@Er*2cThNpe'
 	app.config['SECRET_KEY'] = 'NA.bcr*xB2KJc7W!7mVHeG!xUC9uQo8qAJj7fE7wr2FbHM8A7kdRRaaN7a-zK9*.vxB92o3s.wgLRV76Z6qWvj9gb@Er*2cThNpe'
-	app.run('0.0.0.0', port) # 5000 is the port for the url, change this when test so that multiple devs can run at same time on different ports
+	app.run()
+	#app.run('0.0.0.0', port) # 5000 is the port for the url, change this when test so that multiple devs can run at same time on different ports
